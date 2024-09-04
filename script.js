@@ -1,5 +1,7 @@
 const parentDiv=document.querySelector(".container");
 
+//Function to create the first grid
+
 for (let i=0 ; i < 16; i++){
     const row=document.createElement("div");
     row.style.display="flex";
@@ -13,7 +15,7 @@ for (let i=0 ; i < 16; i++){
         newDiv.style.border="0.2px solid #4F4E28"
         newDiv.style.boxSizing="border-box";
 
-        newDiv.addEventListener('mouseout', function (event){
+        newDiv.addEventListener('mouseover', function (event){
             newDiv.style.backgroundColor="#4F4E28";
         });
 
@@ -22,6 +24,8 @@ for (let i=0 ; i < 16; i++){
     parentDiv.appendChild(row);
     
 }
+
+//function to create the grid using user's input
 
 function newGrid(event){
     let input=prompt("Enter the new size(max:100): ");
@@ -49,7 +53,7 @@ function newGrid(event){
             newDiv.style.border="0.2px solid #4F4E28"
             newDiv.style.boxSizing="border-box";
     
-            newDiv.addEventListener('mouseout', function (event){
+            newDiv.addEventListener('mouseover', function (event){
                 newDiv.style.backgroundColor = generateRgb();
             });
     
@@ -61,6 +65,8 @@ function newGrid(event){
 
 }
 
+//function to create random rgb colors in newGrid function
+
 function generateRgb() {
     let red = Math.floor(Math.random() * 256);
     let green = Math.floor(Math.random() * 256);
@@ -68,8 +74,19 @@ function generateRgb() {
     return `rgb(${red},${green},${blue})`;
 }
 
-document.querySelector("button").addEventListener("click",newGrid);
+document.querySelector(".adjust").addEventListener("click",newGrid);
 
+//function to clear the grid
+
+function clearGrid() {
+    const cells = document.querySelectorAll('.container > .row > div');
+    
+    cells.forEach(cell => {
+        cell.style.backgroundColor = '#fefae0';
+    });
+}
+
+document.querySelector(".clear").addEventListener("click", clearGrid);
 
 
 
